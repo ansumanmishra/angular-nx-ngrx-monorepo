@@ -56,5 +56,9 @@
     "@nx/angular:component": {
       "style": "scss"
     }
+  },
+  "workspaceLayout": {
+    "projectNameAndRootFormat": "derived",
+    "libsDir": "libs"
   }
 }
