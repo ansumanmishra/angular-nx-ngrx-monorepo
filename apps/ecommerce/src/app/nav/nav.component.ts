@@ -7,7 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CategoryService } from '@angular-nx-ngrx-monorepo/category';
 
@@ -25,7 +25,8 @@ import { CategoryService } from '@angular-nx-ngrx-monorepo/category';
     AsyncPipe,
     RouterModule,
     NgIf,
-    NgFor
+    NgFor,
+    TitleCasePipe
   ]
 })
 export class NavComponent {
