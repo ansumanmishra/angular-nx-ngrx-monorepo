@@ -5,11 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AsyncPipe, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CategoryService } from '@angular-nx-ngrx-monorepo/category';
+import { LoginService } from '@angular-nx-ngrx-monorepo/auth';
 
 @Component({
   selector: 'app-nav',
@@ -26,11 +28,13 @@ import { CategoryService } from '@angular-nx-ngrx-monorepo/category';
     RouterModule,
     NgIf,
     NgFor,
-    TitleCasePipe
+    TitleCasePipe,
+    MatMenuModule,
   ]
 })
 export class NavComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  isLoggedIn = inject(LoginService).isLoggedIn;
 
   categoryService = inject(CategoryService);
   categories$ = this.categoryService.getCategories();

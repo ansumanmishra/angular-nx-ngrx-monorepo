@@ -18,7 +18,36 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>ecommerce</span>
+      <span>Home Shopping</span>
+      <ng-container *ngIf="isLoggedIn(); else loginBlock">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+        >
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button routerLink="profile" mat-menu-item>
+            <mat-icon>face_5</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </ng-container>
+
+      <ng-template #loginBlock>
+        <button
+          mat-icon-button
+          aria-label="Login"
+          routerLink="login"
+        >
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </ng-template>
     </mat-toolbar>
     <div class="container-fluid">
       <router-outlet></router-outlet>
