@@ -1,20 +1,19 @@
 import { Route } from '@angular/router';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { ProductListComponent, loadProducts$, loadProductsByCategory$, productFeature } from '@angular-nx-ngrx-monorepo/product';
-import { LoginComponent, authGuard } from '@angular-nx-ngrx-monorepo/auth';
+import { LoginComponent } from '@angular-nx-ngrx-monorepo/auth';
+import { loadProducts$, loadProductsByCategory$, productFeature } from '@angular-nx-ngrx-monorepo/common/store';
 
 export const appRoutes: Route[] = [{
     path: '',
-    component: ProductListComponent,
+    loadComponent: () => import('@angular-nx-ngrx-monorepo/product').then((m) => m.ProductListComponent),
     providers: [
         provideState(productFeature),
         provideEffects({loadProducts$, loadProductsByCategory$})
     ]
 }, {
     path: 'category/:categoryName',
-    // loadComponent: () => import('@angular-nx-ngrx-monorepo/product').then((m) => m.ProductListComponent),
-    component: ProductListComponent,
+    loadComponent: () => import('@angular-nx-ngrx-monorepo/product').then((m) => m.ProductListComponent),
     providers: [
         provideState(productFeature),
         provideEffects({loadProducts$, loadProductsByCategory$})

@@ -1,6 +1,6 @@
+import { Product } from "@angular-nx-ngrx-monorepo/common/models";
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { Product } from "../models/product";
 
 @Injectable({
     providedIn: 'root'

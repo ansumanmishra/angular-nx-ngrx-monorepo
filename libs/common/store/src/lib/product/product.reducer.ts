@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
-import { Product } from "../models/product";
 import { loadProducts, loadProductsByCategory, loadProductsFailure, loadProductsSuccess } from "./product.actions";
+import { Product } from "@angular-nx-ngrx-monorepo/common/models";
 
 enum LoadingStatus {
     LOADING = 'LOADING',

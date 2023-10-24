@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { AsyncPipe, CurrencyPipe, NgFor, NgIf, TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
-import { Product } from '../../models/product';
 import { MatCardModule } from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button'
 import { Store } from '@ngrx/store';
-import { loadProducts, loadProductsByCategory } from '../../store/product.actions';
-import { selectProducts } from '../../store/product.reducer';
+import { Product } from '@angular-nx-ngrx-monorepo/common/models';
+import { loadProductsByCategory, loadProducts, selectProducts } from '@angular-nx-ngrx-monorepo/common/store';
+
 
 @Component({
   selector: 'app-product-list',

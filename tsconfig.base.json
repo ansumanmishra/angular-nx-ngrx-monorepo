@@ -17,6 +17,12 @@
     "paths": {
       "@angular-nx-ngrx-monorepo/auth": ["libs/auth/src/index.ts"],
       "@angular-nx-ngrx-monorepo/category": ["libs/category/src/index.ts"],
+      "@angular-nx-ngrx-monorepo/common/models": [
+        "libs/common/models/src/index.ts"
+      ],
+      "@angular-nx-ngrx-monorepo/common/store": [
+        "libs/common/store/src/index.ts"
+      ],
       "@angular-nx-ngrx-monorepo/product": ["libs/product/src/index.ts"]
     }
   },

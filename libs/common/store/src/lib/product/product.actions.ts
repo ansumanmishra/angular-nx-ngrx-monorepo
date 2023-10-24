@@ -1,5 +1,5 @@
 import { createAction, emptyProps, props } from '@ngrx/store';
-import { Product } from '../models/product';
+import { Product } from '@angular-nx-ngrx-monorepo/common/models';
 
 export const loadProducts = createAction(
     '[Product Page] Load products',
