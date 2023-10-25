@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { LoginComponent } from '@angular-nx-ngrx-monorepo/auth';
-import { loadProducts$, loadProductsByCategory$, productFeature } from '@angular-nx-ngrx-monorepo/common/store';
+import { LoginComponent, authGuard } from '@angular-nx-ngrx-monorepo/auth';
+import { loadProducts$, loadProductsByCategory$, loadUserProfile$, productFeature, userfeature } from '@angular-nx-ngrx-monorepo/common/store';
 
 export const appRoutes: Route[] = [{
     path: '',
@@ -19,6 +19,15 @@ export const appRoutes: Route[] = [{
         provideEffects({loadProducts$, loadProductsByCategory$})
     ],
     // canActivate: [authGuard]
+},
+{
+    path: 'profile',
+    loadComponent: () => import('@angular-nx-ngrx-monorepo/user').then( (m) => m.UserComponent),
+    providers: [
+        provideState(userfeature),
+        provideEffects({loadUserProfile$}),
+    ],
+    canActivate: [authGuard]
 },
 {
     path: 'login',

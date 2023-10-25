@@ -12,7 +12,7 @@ import { loadProductsByCategory, loadProducts, selectProducts } from '@angular-n
   selector: 'app-product-list',
   standalone: true,
   template: `
-        <h3>{{category | titlecase}}</h3>
+        <h3>{{category ? (category | titlecase) : 'All Products'}}</h3>
         <hr />
         <ng-container *ngIf="products$ | async as products">
         <div class="row">
