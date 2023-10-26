@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button'
 import { Store } from '@ngrx/store';
 import { Product } from '@angular-nx-ngrx-monorepo/common/models';
 import { loadProductsByCategory, loadProducts, selectProducts } from '@angular-nx-ngrx-monorepo/common/store';
+import { RouterOutlet } from '@angular/router';
 
 
 @Component({

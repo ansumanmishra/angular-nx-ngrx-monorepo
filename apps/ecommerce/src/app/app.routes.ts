@@ -2,37 +2,56 @@ import { Route } from '@angular/router';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { LoginComponent, authGuard } from '@angular-nx-ngrx-monorepo/auth';
-import { loadProducts$, loadProductsByCategory$, loadUserProfile$, productFeature, userfeature } from '@angular-nx-ngrx-monorepo/common/store';
+import {
+  loadProducts$,
+  loadProductsByCategory$,
+  loadUserProfile$,
+  productFeature,
+  userfeature,
+} from '@angular-nx-ngrx-monorepo/common/store';
 
-export const appRoutes: Route[] = [{
+export const appRoutes: Route[] = [
+  {
     path: '',
-    loadComponent: () => import('@angular-nx-ngrx-monorepo/product').then((m) => m.ProductListComponent),
-    providers: [
-        provideState(productFeature),
-        provideEffects({loadProducts$, loadProductsByCategory$})
-    ]
-}, {
+    redirectTo: 'products',
+    pathMatch: 'full',
+  },
+  {
     path: 'category/:categoryName',
-    loadComponent: () => import('@angular-nx-ngrx-monorepo/product').then((m) => m.ProductListComponent),
+    loadComponent: () =>
+      import('@angular-nx-ngrx-monorepo/product').then(
+        (m) => m.ProductListComponent
+      ),
     providers: [
-        provideState(productFeature),
-        provideEffects({loadProducts$, loadProductsByCategory$})
+      provideState(productFeature),
+      provideEffects({ loadProducts$, loadProductsByCategory$ }),
     ],
     // canActivate: [authGuard]
-},
-{
-    path: 'profile',
-    loadComponent: () => import('@angular-nx-ngrx-monorepo/user').then( (m) => m.UserComponent),
+  },
+  {
+    path: 'products',
+    loadChildren: () =>
+      import('@angular-nx-ngrx-monorepo/product').then((m) => m.productRoutes),
     providers: [
-        provideState(userfeature),
-        provideEffects({loadUserProfile$}),
+      provideState(userfeature),
+      provideState(productFeature),
+      provideEffects({
+        loadProductsByCategory$,
+        loadUserProfile$,
+        loadProducts$,
+      }),
     ],
-    canActivate: [authGuard]
-},
-{
+  },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('@angular-nx-ngrx-monorepo/user').then((m) => m.UserComponent),
+    canActivate: [authGuard],
+  },
+  {
     path: 'login',
-    component: LoginComponent
-}
+    component: LoginComponent,
+  },
 ];
 
 // For lazy loading it says - error  Static imports of lazy-loaded libraries are forbidden.
