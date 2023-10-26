@@ -6,7 +6,7 @@ import {MatButtonModule} from '@angular/material/button'
 import { Store } from '@ngrx/store';
 import { Product } from '@angular-nx-ngrx-monorepo/common/models';
 import { loadProductsByCategory, loadProducts, selectProducts } from '@angular-nx-ngrx-monorepo/common/store';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -20,7 +20,7 @@ import { RouterOutlet } from '@angular/router';
     <div class="col-md-6 col-lg-4 d-flex" *ngFor="let product of products ">
       <mat-card class="example-card">
         <div class="example-card-image">
-          <img mat-card-image width=200 src="{{product.image}}" alt="Photo of a Shiba Inu">
+          <a [routerLink]="['/products/detail', product.id]"><img mat-card-image width=200 src="{{product.image}}" alt="Photo of a Shiba Inu"></a>
         </div>
         <mat-card-header>
           <mat-card-title>{{product.title}}</mat-card-title>
@@ -76,7 +76,9 @@ import { RouterOutlet } from '@angular/router';
 }
     `,
   ],
-  imports: [NgIf, NgFor, AsyncPipe, MatCardModule, MatButtonModule, CurrencyPipe, UpperCasePipe, TitleCasePipe],
+  imports: [NgIf, NgFor, AsyncPipe, MatCardModule, MatButtonModule, CurrencyPipe, UpperCasePipe, TitleCasePipe,
+            RouterLink
+],
 })
 export class ProductListComponent implements OnInit {
   @Input() set categoryName(categoryName: string) {
