@@ -1,6 +1,6 @@
 import { inject } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { loadProducts, loadProductsByCategory, loadProductsFailure, loadProductsSuccess } from "./product.actions";
+import { loadProducts, loadProductsFailure, loadProductsSuccess } from "./product.actions";
 import { catchError, exhaustMap, map, of } from "rxjs";
 import { Product } from "@angular-nx-ngrx-monorepo/common/models";
 import { ProductService } from "./product.service";
