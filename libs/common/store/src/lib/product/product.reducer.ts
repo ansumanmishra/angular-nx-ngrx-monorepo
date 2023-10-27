@@ -66,6 +66,11 @@ export const productFeature = createFeature({
           return products?.find((product) => product.id === +id);
         });
       },
+      filterProductsByCategory: (category: string) => {
+        return createSelector(selectProducts, (products: Product[]) => {            
+          return products.filter((product) => product.category === category);
+        });
+      },
     };
   },
 });
@@ -76,4 +81,5 @@ export const {
   selectProductState,
   selectProducts,
   filterProductsById,
+  filterProductsByCategory
 } = productFeature;

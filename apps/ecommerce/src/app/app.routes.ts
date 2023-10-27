@@ -4,10 +4,7 @@ import { provideEffects } from '@ngrx/effects';
 import { LoginComponent, authGuard } from '@angular-nx-ngrx-monorepo/auth';
 import {
   loadProducts$,
-  loadProductsByCategory$,
-  loadUserProfile$,
   productFeature,
-  userfeature,
 } from '@angular-nx-ngrx-monorepo/common/store';
 
 export const appRoutes: Route[] = [
@@ -24,23 +21,13 @@ export const appRoutes: Route[] = [
       ),
     providers: [
       provideState(productFeature),
-      provideEffects({ loadProducts$, loadProductsByCategory$ }),
+      provideEffects({ loadProducts$ }),
     ],
-    // canActivate: [authGuard]
   },
   {
     path: 'products',
     loadChildren: () =>
       import('@angular-nx-ngrx-monorepo/product').then((m) => m.productRoutes),
-    providers: [
-      provideState(userfeature),
-      provideState(productFeature),
-      provideEffects({
-        loadProductsByCategory$,
-        loadUserProfile$,
-        loadProducts$,
-      }),
-    ],
   },
   {
     path: 'profile',

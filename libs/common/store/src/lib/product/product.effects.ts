@@ -23,7 +23,7 @@ export const loadProducts$ = createEffect(
     }
 );
 
-export const loadProductsByCategory$ = createEffect(
+/* export const loadProductsByCategory$ = createEffect(
     (actions = inject(Actions), productService = inject(ProductService)) => {
         return actions.pipe(
             ofType(loadProductsByCategory),
@@ -39,4 +39,4 @@ export const loadProductsByCategory$ = createEffect(
     {
         functional: true
     }
-);
+); */

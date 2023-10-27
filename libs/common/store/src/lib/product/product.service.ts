@@ -12,7 +12,7 @@ export class ProductService {
         return this.http.get<Product[]>(`https://fakestoreapi.com/products`);
     }
 
-    getProductsByCategory(categoryName: string) {
+/*     getProductsByCategory(categoryName: string) {
         return this.http.get<Product[]>(`https://fakestoreapi.com/products/category/${categoryName}`);
-    }
+    } */
 }
