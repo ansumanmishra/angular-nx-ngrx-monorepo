@@ -1,10 +1,9 @@
 import { Product } from "@angular-nx-ngrx-monorepo/common/models";
-import { filterProductsById, loadProducts } from "@angular-nx-ngrx-monorepo/common/store";
 import { AsyncPipe, CurrencyPipe, JsonPipe, NgIf } from "@angular/common";
 import { Component, Input, OnInit, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
-import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
+import { ProductsFacade } from "../../services/products-facade";
 
 @Component({
     selector: 'app-product-detail',
@@ -25,11 +24,10 @@ import { Observable } from "rxjs";
 })
 export class ProductDetailComponent implements OnInit {
     @Input() id!: number;
-    #store = inject(Store);
+    #productsFacade = inject(ProductsFacade);
     productDetailById$!: Observable<Product | undefined>;
 
     ngOnInit(): void {
-        this.#store.dispatch(loadProducts());
-        this.productDetailById$ = this.#store.select(filterProductsById(this.id));
+        this.productDetailById$ = this.#productsFacade.getProductById(+this.id);
     }
 }

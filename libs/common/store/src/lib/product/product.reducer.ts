@@ -63,7 +63,7 @@ export const productFeature = createFeature({
       selectProducts,
       filterProductsById: (id: number) => {
         return createSelector(selectProducts, (products: Product[]) => {            
-          return products?.find((product) => product.id === +id);
+          return products?.find((product) => product.id === id);
         });
       },
       filterProductsByCategory: (category: string) => {

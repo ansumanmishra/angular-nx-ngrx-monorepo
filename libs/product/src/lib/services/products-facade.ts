@@ -1,5 +1,5 @@
 import { Product } from "@angular-nx-ngrx-monorepo/common/models";
-import { filterProductsByCategory, loadProducts, selectProducts } from "@angular-nx-ngrx-monorepo/common/store";
+import { filterProductsByCategory, filterProductsById, loadProducts, selectProducts } from "@angular-nx-ngrx-monorepo/common/store";
 import { Injectable, inject } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
@@ -13,7 +13,7 @@ export class ProductsFacade {
 
     get products$(): Observable<Product[]> {
         this.#assertLoaded();
-        
+
         return this.#store.select(selectProducts);  
     }
 
@@ -21,6 +21,12 @@ export class ProductsFacade {
         this.#assertLoaded();
 
         return this.#store.select(filterProductsByCategory(category));
+    }
+
+    getProductById(id: number): Observable<Product | undefined> {
+        this.#assertLoaded();
+
+        return this.#store.select(filterProductsById(id));
     }
 
     #assertLoaded() {
